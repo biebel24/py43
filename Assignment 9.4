@@ -1,0 +1,18 @@
+name = input('Enter file: ')
+if len(name) < 1 : name = 'mbox-short.txt'
+handle = open(name)
+
+di = dict()
+for line in handle:
+    if line.startswith("From:") :
+        line = line.split()
+        email = line[1]
+        di[email] = di.get(email,0) +1
+
+largest = -1
+theword = None
+for k,v in di.items() :
+        if v > largest :
+            largest = v
+            theword = k
+print(theword,largest)
